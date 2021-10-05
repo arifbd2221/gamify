@@ -7,15 +7,17 @@ UserModel = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
-
-        user = UserModel.objects.create_user(
-            phone=validated_data['phone'],
-            password=validated_data['phone'],
+        
+        user = UserModel(
+            phone=f"019{validated_data['phone']}",
+            fullname=validated_data['fullname'],
         )
+        user.set_password(f"019{validated_data['phone']}")
+        user.save()
 
         return user
 
     class Meta:
         model = UserModel
         # Tuple of serialized model fields (see link [2])
-        fields = ( "id", "phone", )
+        fields = ( "id", "fullname", "phone", )

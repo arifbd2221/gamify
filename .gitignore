@@ -11,3 +11,4 @@ redis/sentinel?.conf
 venv/
 .idea/
 .vscode/
+mydatabase
