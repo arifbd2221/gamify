@@ -9,10 +9,10 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         
         user = UserModel(
-            phone=f"019{validated_data['phone']}",
+            phone=validated_data['phone'],
             fullname=validated_data['fullname'],
         )
-        user.set_password(f"019{validated_data['phone']}")
+        user.set_password(validated_data['phone'])
         user.save()
 
         return user
